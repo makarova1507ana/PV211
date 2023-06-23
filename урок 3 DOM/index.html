@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Компьютер выключен</h1>
+    <button onclick="power();">Включить Компьютер</button>
+</body>
+<script>
+    let h1 = document.querySelector('h1');
+    let btn = document.querySelector('button');
+
+    function power() {
+        if (btn.textContent === 'Выключить компьютер') {
+            powerOFF();
+        } else {
+            powerON();
+        }
+    }
+
+    function powerON() {
+        //console.log(h1); /*innerHTML изменяет HTML code*/
+        /*textContent изменяет только текст*/
+        console.log('powerON');
+        h1.textContent = 'Компьютер  включен';
+        btn.textContent = 'Выключить компьютер';
+    }
+
+    function powerOFF() {
+        console.log('powerOFF');
+        h1.textContent = 'Компьютер  выключен';
+        btn.textContent = 'Включить компьютер';
+    }
+</script>
+
+</html>
