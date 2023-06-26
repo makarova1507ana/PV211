@@ -17,7 +17,7 @@
         border: 1px solid black;
         margin: 0px 0px 0px -4px;
         width: 120px;
-        box-sizing: box-colider;
+        /*box-sizing: box-colider;*/
     }
 </style>
 
@@ -25,10 +25,28 @@
     <!-- калькулятор -->
     <p>здесь будет результат</p>
     <!--здесь будет результат-->
-    <button>1</button> <button>2</button> <button>3</button> <button>+</button> <br>
+    <button><span>1</span></button> <button>2</button> <button>3</button> <button>+</button> <br>
     <button>4</button> <button>5</button> <button>6</button> <button>-</button> <br>
     <button>7</button> <button>8</button> <button>9</button> <button>/</button> <br>
     <button>0</button> <button style="width:60px;">=</button> <button>*</button> <br>
 </body>
+<script>
+    btns = document.querySelectorAll('button'); //создаем массив кнопок
+    p = document.querySelector('p');
+
+    /*function f() {
+        console.log("нажата какая-то");
+    }*/
+    // объект Event - определяет где именно произошло нажатие
+    f = (Event) => {
+        // console.log(Event);
+        //console.log(Event.target); //возвращет элемент страницы
+        console.log(Event.currentTarget); //возвращет элемент страницы, который вызывает данную функцию
+
+    };
+    btns.forEach(btn => { // для каждого btn добавиляеться listener 
+        btn.addEventListener('click', f);
+    });
+</script>
 
 </html>
