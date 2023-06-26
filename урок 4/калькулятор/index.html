@@ -16,14 +16,15 @@
     p {
         border: 1px solid black;
         margin: 0px 0px 0px -4px;
-        width: 120px;
+        width: 100%;
+        height: 30px;
         /*box-sizing: box-colider;*/
     }
 </style>
 
 <body>
     <!-- калькулятор -->
-    <p>здесь будет результат</p>
+    <p></p>
     <!--здесь будет результат-->
     <button><span>1</span></button> <button>2</button> <button>3</button> <button>+</button> <br>
     <button>4</button> <button>5</button> <button>6</button> <button>-</button> <br>
@@ -41,9 +42,73 @@
     f = (Event) => {
         // console.log(Event);
         //console.log(Event.target); //возвращет элемент страницы
-        console.log(Event.currentTarget); //возвращет элемент страницы, который вызывает данную функцию
-
+        //console.log(Event.currentTarget); //возвращет элемент страницы, который вызывает данную функцию
+        // получить содержимое кнопки и его записать в p
+        if (Event.currentTarget.textContent == '=') {
+            result()
+        } else {
+            p.textContent = p.textContent + Event.currentTarget.textContent;
+        }
     };
+
+    function result() {
+
+        exp = p.textContent; // выражение запомнили
+        operator = find_operator(exp); // определяем оператор
+
+        if (operator == '+') {
+            sum();
+        } else if (operator == '-') {
+            minus();
+        }
+
+    }
+    // переберем строку и определим знак
+    function find_operator(exp) {
+
+        for (element of exp) { //
+
+            if (element == '+' || element == '-' || element == '*' || element == '/') {
+                return element;
+            }
+        }
+        return '';
+    }
+
+    function sum() {
+        operator_index = exp.indexOf('+'); //indexOf - возвращает место где лежит символ
+        next_num = exp.slice(operator_index + 1); //slice - от 1 и до конца
+        previos_num = exp.slice(0, operator_index); //slice - от 0  и (до 1 не включительно)
+
+
+        //r = Number(next_num.slice(0, 1));
+        // console.log(next_num);
+        /*if (find_operator(next_num) != '') {
+            operator_index = next_num.indexOf(find_operator(next_num));
+            n2 = next_num.slice(operator_index + 1); //slice - от 1 и до конца
+            console.log(operator_index);
+            console.log(r);
+            if (operator == '+') {
+                console.log(r);
+                r += Number(n2);
+            } else if (operator == '-') {
+                r += Number(n2);
+            }
+            console.log(r);
+            next_num = next_num.slice(operator_index + 1);
+        }*/
+
+
+        p.textContent = p.textContent + '=' + (Number(previos_num) + Number(next_num));
+
+    }
+
+    function minus() {
+        operator_index = exp.indexOf('-'); //indexOf - возвращает место где лежит символ
+        next_num = exp.slice(operator_index + 1); //slice - от 1 и до конца
+        previos_num = exp.slice(0, operator_index); //slice - от 0  и (до 1 не включительно)
+        p.textContent = p.textContent + '=' + (Number(previos_num) - Number(next_num));
+    }
     btns.forEach(btn => { // для каждого btn добавиляеться listener 
         btn.addEventListener('click', f);
     });
