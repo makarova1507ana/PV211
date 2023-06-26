@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Создать html-страницу с кнопкой Like, 
+        при нажатии на которую увеличивается счетчик лайков. -->
+    <button>👍 лайк</button>
+</body>
+<script>
+    let btn = document.querySelector('button');
+    let counter = 0; // глобальная переменная 
+    btn.textContent = btn.textContent + ' ' + counter; // добавила ноль
+    // "прослушаем" кнопку  и отлавливаем событие нажатия
+    btn.addEventListener('click', function like() {
+        //let counter = 0; // локальная
+        //console.log(counter++, ++counter); // разница
+
+        btn.textContent = '👍 лайк' + ' ' + (++counter);
+    });
+</script>
+
+</html>
