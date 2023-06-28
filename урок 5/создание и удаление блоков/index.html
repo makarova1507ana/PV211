@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        display: block;
+    }
+    
+    div {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        margin: 2px;
+        background-color: rgb(21, 29, 26);
+    }
+</style>
+
+<body>
+    <button>Добавить блок</button>
+
+</body>
+<script>
+    btn = document.querySelector('button');
+
+    function addBlock() { //создавать блоки
+        div = document.createElement('div'); //создаем элемент DOM НО не добавляет на саму страницу
+
+        //console.log(Math.floor(Math.random() * 255)); //получение случайного числа
+        n1 = Math.floor(Math.random() * 255);
+        n2 = Math.floor(Math.random() * 255);
+        n3 = Math.floor(Math.random() * 255);
+        div.style.background = 'rgb(' + n1 + ',' + n2 + ',' + n3 + ')'; // склеиваем строку в такой вид rgb(21, 29, 26);
+        div.innerHTML = 'hh'; //'<img src="image.jpg">';
+        document.body.prepend(div); //добавляет элемент на саму страницу  в начало
+
+
+
+        // document.body.append(div); // добавляет элемент на саму страницу в конец
+        // divAll = document.querySelectorAll('div');
+        // divAll.forEach(div => div.addEventListener('click', deleteElement));
+
+
+    }
+    deleteElement = (Event) => {
+        Event.currentTarget.remove(); // удаляет элемент из DOM
+
+    }
+    btn.addEventListener('click', addBlock);
+</script>
+
+</html>
