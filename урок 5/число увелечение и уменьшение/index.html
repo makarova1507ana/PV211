@@ -81,8 +81,14 @@
         }
 
     }
-    // increment_btn.addEventListener('click', increment);
-    // decrement_btn.addEventListener('click', decrement);
+    //прослушиваем нажатия клавиатуры
+    input.addEventListener('keydown', function(e) {
+            if (e.key.match(/[^0-9]/)) {
+                e.preventDefault(); //блокуриет печать
+            };
+        })
+        // increment_btn.addEventListener('click', increment);
+        // decrement_btn.addEventListener('click', decrement);
 </script>
 
 </html>
