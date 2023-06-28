@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table,
+    tr,
+    td {
+        border: 1px solid rgb(186, 186, 186);
+        border-collapse: collapse;
+    }
+    /* button {
+        width: 10px;
+        height: 10px;
+    }*/
+</style>
+
+<body>
+    <!-- Создать html-страницу с возможностью ввода числового 
+        значения через кнопки (больше, меньше).
+Пользователь не должен иметь возможность печатать текст
+или цифры. Число изменяется только при нажатии на кнопки. -->
+    <!-- <input type="number"> -->
+    <table>
+
+        <tr>
+            <td rowspan="2">
+                <input style="height:100%;">
+            </td>
+            <td>
+                <button class="btnup" onclick="increment();">↑</button>
+            </td>
+
+        </tr>
+        <tr>
+
+            <td>
+                <button class="btndown" onclick="decrement();">↓</button>
+            </td>
+        </tr>
+    </table>
+</body>
+<script>
+    input = document.querySelector('input');
+    //input.innerHTML = '<input type="number">';
+    increment_btn = document.querySelector('btnup');
+    decrement_btn = document.querySelector('btndown');
+
+
+    //проверка является ли строка числом?
+    function isNumber() {
+
+        for (s of input.value) //s - символ
+        {
+
+            if (Number.isInteger(Number(s)) == false) //true false
+            {
+
+                return false
+            }
+        }
+        return true
+
+    }
+
+    function increment() {
+        //получить значение элемента и увелечили на единицу
+        if (isNumber()) {
+            input.value = Number(input.value) + 1;
+        }
+    }
+
+    function decrement() {
+        //получить значение элемента и уменьшили на единицу
+        if (isNumber()) {
+            input.value = Number(input.value) - 1;
+        }
+
+    }
+    // increment_btn.addEventListener('click', increment);
+    // decrement_btn.addEventListener('click', decrement);
+</script>
+
+</html>
