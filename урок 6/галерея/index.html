@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Задание 2
+Создать html-страницу с галереей.
+В один момент времени на экране отображается одно изображение и
+ две кнопки: Назад и Вперед. При нажатии на кнопки
+изображения должны переключатся в указанном порядке. Когда
+следующего/предыдущего изображения нет, то соответствующую
+кнопку необходимо блокировать. Изображения хранить в заранее
+подготовленном массиве. -->
+    <button class="previous_img">
+    ←
+</button>
+    <img style="width:100px;height:200px;" src="images/cat.ico" alt="изображение">
+    <button class="next_img">
+    →
+</button><br>
+    <form>
+        <input type="radio" data-i="0" name="img">
+        <input type="radio" data-i="1" name="img">
+        <input type="radio" data-i="2" name="img">
+    </form>
+</body>
+<script>
+    images = ["images/cat.ico", "images/img1.gif", "images/img2.gif"];
+    img = document.querySelector('img');
+    radio_btns = document.querySelectorAll('input');
+    next_btn = document.querySelector('.next_img');
+    previous_btn = document.querySelector('.previous_img');
+    counter = 0;
+    radio_btns[counter].setAttribute('checked', 'True');
+
+    function next_img() {
+        if (counter + 1 < images.length) {
+            img.setAttribute('src', images[++counter]);
+            radio_btns[counter].setAttribute('checked', 'True');
+            console.log(counter);
+        }
+    }
+    set_img = (Event) => {
+        //console.log(Event.target.dataset.i) //текущую кнопку  и значение для массива через атрибут data-i
+        counter = Event.target.dataset.i;
+        img.setAttribute('src', images[counter]);
+        console.log(counter);
+    }
+    next_btn.addEventListener('click', next_img);
+    radio_btns.forEach(btn => btn.addEventListener('click', set_img));
+</script>
+
+</html>
