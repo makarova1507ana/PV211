@@ -20,13 +20,16 @@
     </ul>
     <label>ваша задача</label>
     <input type="text" id="task-input">
-    <button>добавить задачу</button>
+    <button id="add-task">добавить задачу</button>
+    <button id="delete-task">Удалить задачу</button>
+
 
 </body>
 <script>
     let task_list = document.querySelector('ul');
     let task_input = document.getElementById('task-input');
-    let btn = document.querySelector('button');
+    let btn_add_task = document.getElementById('add-task');
+    let btn_delete_task = document.getElementById('delete-task');
 
     document.addEventListener('DOMContentLoaded', loadTasks); // дожидаемся полной загрузки дома и загружаем задачи
 
@@ -40,10 +43,30 @@
         saveTasks();
     }
 
-    // Пустые задачи не добавлять
+    function deleteTask() {
 
-    btn.addEventListener('click', function() {
-        if (task_input.value != '') {
+        //console.log(tasks[0].firstChild.checked);//input с чекбоксом и смотрим отмечен или нет
+        let i = 0;
+        while (true) {
+            let tasks = document.getElementsByTagName('li'); //наши задачи
+            //  console.log(tasks, i)
+            if (tasks[i].firstChild.checked) {
+
+                tasks[i].remove();
+
+            } else {
+                i++;
+            }
+            if (i >= tasks.length) {
+                break;
+            }
+        }
+        saveTasks();
+    }
+    btn_delete_task.addEventListener('click', deleteTask);
+
+    btn_add_task.addEventListener('click', function() {
+        if (task_input.value != '') { // Пустые задачи не добавлять
             task = task_input.value;
             addTask(task);
         }
@@ -53,7 +76,7 @@
     // сохранение задач при закрытие и обновление страницы
     function saveTasks() {
         let task_array = [];
-        let tasks = document.getElementsByTagName('li'); //наши задачи
+        let tasks = document.getElementsByTagName('li'); //наши задачи, которые в доме
         for (task of tasks) {
             task_array.push(task.textContent); //добавляем в конец массива текст задачи
         }
