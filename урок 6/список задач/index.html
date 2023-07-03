@@ -14,13 +14,64 @@
 
 <body>
     <!-- список задач -->
+
     <ul>
-        <li> <input type="checkbox"> Задача 1</li>
-        <li> <input type="checkbox">Задача 2</li>
+
     </ul>
     <label>ваша задача</label>
-    <input type="text">
+    <input type="text" id="task-input">
     <button>добавить задачу</button>
+
 </body>
+<script>
+    let task_list = document.querySelector('ul');
+    let task_input = document.getElementById('task-input');
+    let btn = document.querySelector('button');
+
+    document.addEventListener('DOMContentLoaded', loadTasks); // дожидаемся полной загрузки дома и загружаем задачи
+
+    // получить задачу и добавить в дом
+    function addTask(task_text) {
+        task_input.value = '';
+        li = document.createElement('li');
+        li.innerHTML = '<input type="checkbox">' + task_text;
+        task_list.append(li);
+
+        saveTasks();
+    }
+
+    // Пустые задачи не добавлять
+
+    btn.addEventListener('click', function() {
+        if (task_input.value != '') {
+            task = task_input.value;
+            addTask(task);
+        }
+    });
+
+
+    // сохранение задач при закрытие и обновление страницы
+    function saveTasks() {
+        let task_array = [];
+        let tasks = document.getElementsByTagName('li'); //наши задачи
+        for (task of tasks) {
+            task_array.push(task.textContent); //добавляем в конец массива текст задачи
+        }
+        //console.log(task_array);
+        //установим в локальное хранилище
+        localStorage.setItem('tasks', JSON.stringify(task_array)); // запись в json 
+    }
+
+    // загрузка задач и парсить json
+    function loadTasks() {
+        let tasks = JSON.parse(localStorage.getItem('tasks')) // ПАРСИМ в json
+            //console.log(tasks);
+        if (tasks) { //проверяем пустоту задач
+            for (task of tasks) {
+                addTask(task);
+            }
+        }
+    }
+</script>
 
 </html>
