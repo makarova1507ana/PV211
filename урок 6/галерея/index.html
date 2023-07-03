@@ -38,18 +38,39 @@
     counter = 0;
     radio_btns[counter].setAttribute('checked', 'True');
 
+    // This example takes 2 seconds to run
+    const start = Date.now();
+
+    console.log('starting timer...');
+    // Expected output: "starting timer..."
+    //  setTimeout(showSlides, 5000); //  каждые 5 секунды
+    timer = setTimeout(() => {
+        const millis = Date.now() - start;
+
+        console.log(`seconds elapsed = ${Math.floor(millis / 1000)}`);
+        // Expected output: "seconds elapsed = 2"
+        setTimeout(console.log('5'), 5000); //  каждые 5 секунды
+    }, 1000);
+
+
+
     function next_img() {
+        console.log(counter);
         if (counter + 1 < images.length) {
             img.setAttribute('src', images[++counter]);
             radio_btns[counter].setAttribute('checked', 'True');
-            console.log(counter);
+            //console.log(counter);
+        } else {
+            counter = 0;
+            img.setAttribute('src', images[counter]);
+            //НЕТ СИНХРОНИЗАЦИИ radio_btns[counter].setAttribute('checked', 'True');
         }
     }
     set_img = (Event) => {
         //console.log(Event.target.dataset.i) //текущую кнопку  и значение для массива через атрибут data-i
-        counter = Event.target.dataset.i;
+        counter = Number(Event.target.dataset.i);
         img.setAttribute('src', images[counter]);
-        console.log(counter);
+        //console.log(counter);
     }
     next_btn.addEventListener('click', next_img);
     radio_btns.forEach(btn => btn.addEventListener('click', set_img));
