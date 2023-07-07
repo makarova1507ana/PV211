@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--авторизация-->
+    <form id="login_Form" onsubmit="return loginUser()">
+        <input type="text" id="username" placeholder="введите имя пользователя" > <br>
+        <input type="password" id="password" placeholder="введите пароль" ><br>
+        <button type="submit">Войти</button>
+    </form>
+    <script>
+        function loginUser() {
+          var username = document.getElementById("username").value;
+          var password = document.getElementById("password").value;
+          
+          // Проверка введенных значений (здесь можно добавить свою логику авторизации)
+          if (username === "admin" && password === "password1234") {
+            // Установка cookie с именем пользователя
+            document.cookie = "username=" + username;
+            // Переадресация на страницу приветствия
+            window.location.href = "cabinet.html";
+          } else {
+            alert("Неверные данные пользователя. Попробуйте еще раз.");
+          }
+          
+          return false; // Предотвращение отправки формы и перезагрузки страницы
+        }
+        </script>
+</body>
+
+</html>
