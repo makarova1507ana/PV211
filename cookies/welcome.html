@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Приветствие</title>
+  <meta charset="utf-8">
+</head>
+<body onload="displayWelcomeMessage()">
+  <h1>Добро пожаловать!</h1>
+  <p id="welcomeMessage"></p>
+<script>
+function displayWelcomeMessage() {
+  // Чтение cookie и вывод приветствия для пользователя
+  //console.log(document.cookie.valueOf);
+  var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  
+  var welcomeMessageElement = document.getElementById("welcomeMessage");
+  welcomeMessageElement.innerText = "Привет, " + cookieValue + "! Добро пожаловать на наш сайт.";
+}
+setTimeout(() => {
+  console.log("this 7 sec");
+  var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  if (cookieValue ==''){
+    window.location.href = "index.html";
+  }
+}, 7000);
+</script>
+</body>
+</html>
