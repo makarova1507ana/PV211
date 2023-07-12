@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIDER</title>
+</head>
+
+<body>
+    <!-- СЛАЙДЕР -->
+    <button class="previous_img">
+    ←
+</button>
+    <img style="width:600px;height:600px;" src="https://via.placeholder.com/600/92c952" alt="изображение">
+    <button class="next_img">
+    →
+</button><br>
+    <!-- <form>
+        <input type="radio" data-i="0" name="img">
+        <input type="radio" data-i="1" name="img">
+        <input type="radio" data-i="2" name="img">
+    </form><br> -->
+    <br>
+    <input type="number" class="count_img"><br>
+    <input type="button" class="get_images" value="get images">
+
+</body>
+<script>
+    // получить данные от сервера в JSON формате и записать их в массив images
+    const requestUrl = 'https://jsonplaceholder.typicode.com/photos';
+    btn_get_images = document.querySelector('.get_images');
+
+    images = Array();
+
+    function get_images(array_images) {
+        count_img = Number(document.querySelector('.count_img').value);
+        console.log('count_img = ', count_img);
+        //блок проверки 
+        if (count_img > 5000) {
+            count_img = 5000
+            console.log('count_img = ', count_img);
+        }
+
+        //добавляем найденый ссылки в массив картинок
+        for (let i = 0; i < count_img; i++) {
+            images.push(array_images[i]['url'])
+        }
+    }
+
+    function getRequest(url) {
+        return fetch(url).then(response => {
+                return response.json()
+            }) // fetch  возвращает promise    
+    }
+
+
+    btn_get_images.addEventListener('click', function() {
+        getRequest(requestUrl)
+            .then(data => (
+                get_images(data),
+                slider(),
+                console.log('good data', data)
+
+            )) //в случае успешного выполнения кода
+            .catch(err => (
+                console.log('error data', err))) //в случае неуспешного выполнения кода
+
+    })
+
+
+
+    /*БЛОК НИЖЕ ПЕРЕКЛЮЧЕНИЕ ИЗОбРЕЖНИЙ*/
+    function slider() {
+        img = document.querySelector('img');
+        //radio_btns = document.querySelectorAll('input');
+        next_btn = document.querySelector('.next_img');
+        previous_btn = document.querySelector('.previous_img');
+        counter = 0;
+        // radio_btns[counter].setAttribute('checked', 'True');
+
+        // This example takes 2 seconds to run
+        const start = Date.now();
+
+        console.log('starting timer...');
+        // Expected output: "starting timer..."
+        //  setTimeout(showSlides, 5000); //  каждые 5 секунды
+        timer = setTimeout(() => {
+            const millis = Date.now() - start;
+
+            console.log(`seconds elapsed = ${Math.floor(millis / 1000)}`);
+            // Expected output: "seconds elapsed = 2"
+            setTimeout(console.log('5'), 5000); //  каждые 5 секунды
+        }, 1000);
+
+
+
+        function next_img() {
+            console.log(counter);
+            if (counter + 1 < images.length) {
+                img.setAttribute('src', images[++counter]);
+                //radio_btns[counter].setAttribute('checked', 'True');
+                //console.log(counter);
+            } else {
+                counter = 0;
+                img.setAttribute('src', images[counter]);
+                //НЕТ СИНХРОНИЗАЦИИ radio_btns[counter].setAttribute('checked', 'True');
+            }
+        }
+        set_img = (Event) => {
+            //console.log(Event.target.dataset.i) //текущую кнопку  и значение для массива через атрибут data-i
+            counter = Number(Event.target.dataset.i);
+            img.setAttribute('src', images[counter]);
+            //console.log(counter);
+        }
+        next_btn.addEventListener('click', next_img);
+        // radio_btns.forEach(btn => btn.addEventListener('click', set_img));
+    }
+</script>
+
+</html>
