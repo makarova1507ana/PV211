@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>Pagination</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <style>
+            .pagination-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .pagination-button, .pagination-number {
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                border: 1px solid red;
+                border-radius: 10px;
+                margin: 5px;
+                font-size: 1.1em;
+                padding: 5px;
+            }
+            .pagination-button:hover, .pagination-number:hover {
+                background: pink;
+            }
+            .hidden, .disabled {
+                display: none;
+            }
+            .active {
+                background: pink;
+            }
+        </style>
+        <ul id="pagination-list">
+            <li>Пункт 1</li>
+            <li>Пункт 2</li>
+            <li>Пункт 3</li>
+            <li>Пункт 4</li>
+            <li>Пункт 5</li>
+            <li>Пункт 6</li>
+            <li>Пункт 7</li>
+            <li>Пункт 8</li>
+            <li>Пункт 9</li>
+            <li>Пункт 10</li>
+            <li>Пункт 11</li>
+            <li>Пункт 12</li>
+            <li>Пункт 13</li>
+            <li>Пункт 14</li>
+            <li>Пункт 15</li>
+            <li>Пункт 16</li>
+            <li>Пункт 17</li>
+            <li>Пункт 18</li>
+            <li>Пункт 19</li>
+            <li>Пункт 20</li>
+            <li>Пункт 22</li>
+            <li>Пункт 23</li>
+            <li>Пункт 23</li>
+            <li>Пункт 24</li>
+            <li>Пункт 25</li>
+            <li>Пункт 26</li>
+            <li>Пункт 27</li>
+            <li>Пункт 28</li>
+            <li>Пункт 29</li>
+            <li>Пункт 30</li>
+            <li>Пункт 31</li>
+            <li>Пункт 32</li>
+            <li>Пункт 33</li>
+            <li>Пункт 34</li>
+            <li>Пункт 35</li>
+            <li>Пункт 36</li>
+            <li>Пункт 37</li>
+            <li>Пункт 38</li>
+            <li>Пункт 39</li>
+            <li>Пункт 40</li>
+            <li>Пункт 41</li>
+            <li>Пункт 42</li>
+            <li>Пункт 43</li>
+            <li>Пункт 44</li>
+            <li>Пункт 45</li>
+            <li>Пункт 46</li>
+            <li>Пункт 47</li>
+            <li>Пункт 48</li>
+            <li>Пункт 49</li>
+            <li>Пункт 50</li>
+            <li>Пункт 51</li>
+        </ul>
+        <nav class="pagination-container">
+            <button class="pagination-button" id="prev-button" title="Назад"><</button>
+            <div id="pagination-numbers"></div>
+            <button class="pagination-button" id="next-button" title="Вперёд">></button>
+        </nav>
+        <script src="pagination.js"></script>
+    </body>
+</html>
