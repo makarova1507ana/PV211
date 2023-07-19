@@ -11,21 +11,60 @@
     <p>text1</p>
     <p>text2</p>
     <p>text3</p>
-
+    <span>этот элемента надо удалить</span>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script>
         // find -> click-> hide
-        $(document).ready(
+        $(document).ready( //$() === jQuerry()   |   $().ready() дожидаюсь загрузки чего-то
             function() {
-                $("p").click(function() {
+
+                console.log($("p")); // вернется массив со всеми тегами p
+                $("p").click(function() { // $("p") == document.querySelector
+                    console.log('$(this), $(this)[0], $(this)[0]["innerHTML"]'); //$(this) --именно тот который вызвал событие
+                    console.log($(this), $(this)[0], $(this)[0]["innerHTML"]); //$(this) --именно тот который вызвал событие
                     $(this).hide();
+
                     setTimeout(() => {
                         $(this).show()
-                    }, 1000);
+                    }, 3000);
                 });
 
             }
         );
+        //array = []
+        // array.foreach()
+
+        /**/
+        nums = ['a', 'b', 'b', 'c', 'd'];
+        $.each(nums, function(index, value) { //index value подтягиваются из  nums 
+            console.log(index, value);
+        })
+
+        obj = {
+            one: 1,
+            two: 2,
+            three: 3,
+            four: 4,
+            five: 5
+        };
+        $.each(obj, function(index, value) { //index value подтягиваются из  obj 
+            console.log(index, value);
+        })
+
+
+        // CREATE ELEMENT append СОЗДАНИЕ
+        $('body').append($("<div> КОНЕЦ  body </div>")); //document.body.append(document.createElement('div'));
+        $('body').after($("<div> after body </div>")); //document.body.append(document.createElement('div'));
+        $('body').before($("<div> before body </div>")); //document.body.append(document.createElement('div'));
+        $('body').prepend($("<div> Начало body </div>")); //document.body.append(document.createElement('div'));
+
+        // replace ELEMENT replaceAll ЗАМЕНА
+        $('<a href="#"> text</a>').replaceAll('p'); // всех p на сслыку а
+
+        // delete ELEMENT detach УДАЛЕНИЕ
+        $('span').click(function() { // по нажатию
+            $(this).detach(); // delete ELEMENT detach УДАЛЕНИЕ
+        });
     </script>
 </body>
 

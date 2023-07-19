@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submenu</title>
+</head>
+
+<body>
+    <ul class="main-menu">
+        <li>Главная</li>
+        <li>Услуги
+            <!--Подменю-->
+            <ul class="submenu">
+                <li>Веб-разработка</li>
+                <li> Дизайн</li>
+            </ul>
+        </li>
+        <li>Поставщики
+            <!--Подменю-->
+            <ul class="submenu">
+                <li>ООО Ромашка</li>
+                <li>ООО Маргарин</li>
+            </ul>
+        </li>
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script>
+        //дождаться DOM загрузки 
+        $(document).ready(function() {
+            $('.submenu').hide();
+            // при  наведении на пункт УСЛУГИ показать скрытое меню
+            $('.main-menu li').hover(
+
+                function() {
+                    $(this).find('.submenu').slideDown();
+                },
+
+                // получим меню submenu, скроем
+                function() {
+                    $(this).find('.submenu').slideUp(); //slideUp () -плавное скрытие элемента)
+                })
+        })
+    </script>
+</body>
+
+</html>
