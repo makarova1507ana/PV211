@@ -7,6 +7,10 @@ h1 {
     margin-bottom: 1.25em;
 }
 
+li {
+    margin-left: 5px;
+}
+
 #pagination-demo {
     display: inline-block;
     margin-bottom: 1.75em;

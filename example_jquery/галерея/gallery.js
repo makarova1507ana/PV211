@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     function showImage(index) {
         let imageUrl = images[index];
-        $(".image-container img").attr('src', imageUrl);
+        $(".image-container img").attr('src', imageUrl); //обращаем к тегу img и устанваливаем новый атрибут / отображает изображения
     }
 
     function navigateToNextImage() {

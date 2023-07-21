@@ -1,91 +1,96 @@
 <html>
-    <head>
-        <title>jQuery</title>
-        <meta charset="utf-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    </head>
-    <body>
-        <style>
-            .popup-fade::before {
-                content: "";
-                background: rgba(0, 0, 0, 0.8);
-                position: fixed;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 5;
-            }
-            .popup {
-                position: fixed;
-                background: white;
-                z-index: 6;
-                top: 20%;
-                left: 50%;
-                width: 400px;
-                margin-left: -200px;
-                border-radius: 5px;
-                padding: 20px;
-            }
-            .popup-close {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-            }
-            .popup-open {
-                display: inline-block;
-                padding: 15px 20px;
-                background: black;
-                color: white;
-                text-decoration: none;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                margin-left: -65px;
-            }
-            .popup-fade {
-                display: none;
-            }
-        </style>
-        <a class="popup-open" href="#">Открыть окно</a>
-        <div class="popup-fade">
-            <div class="popup">
-                <a class="popup-close" href="#">Закрыть</a>
-                <p>Всплывающее окно на нашей странице. 
-                    Здесь могла быть форма обратной связи или,
-                    например, реклама товаров или услуг</p>
-            </div>
+
+<head>
+    <title>jQuery</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <style>
+        .popup-fade::before {
+            content: "";
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+        
+        .popup {
+            position: fixed;
+            background: white;
+            z-index: 6;
+            top: 20%;
+            left: 50%;
+            width: 400px;
+            margin-left: -200px;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        .popup-open {
+            display: inline-block;
+            padding: 15px 20px;
+            background: black;
+            color: white;
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -65px;
+        }
+        
+        .popup-fade {
+            display: none;
+        }
+    </style>
+    <a class="popup-open" href="#">Открыть окно</a>
+    <div class="popup-fade">
+        <div class="popup">
+            <a class="popup-close" href="#">Закрыть</a>
+            <p>Всплывающее окно на нашей странице. Здесь могла быть форма обратной связи или, например, реклама товаров или услуг</p>
         </div>
-        <script>
-            $(document).ready(function() {
+    </div>
+    <script>
+        $(document).ready(function() {
 
-                // Клик по ссылке "Закрыть"
-                $(".popup-close").click(function() {
-                    $(this).parents(".popup-fade").fadeOut();
-                    return false;
-                });
-
-                // Закрытие по клавище ESC
-                $(document).keydown(function(e) {
-                    if (e.keyCode === 27) {
-                        e.stopPropagation();
-                        $(".popup-fade").fadeOut();
-                    }
-                });
-                
-                // Клик по фону (закрытие окна), но не по содержимому окна
-                $('.popup-fade').click(function(e) {
-                    if ($(e.target).closest('.popup').length === 0) {
-                        $(this).fadeOut();
-                    }
-                });
-
-                // Открытие окна при клике на ссылку
-                $(".popup-open").click(function() {
-                    $(".popup-fade").fadeIn();
-                    return false;
-                })
+            // Клик по ссылке "Закрыть"
+            $(".popup-close").click(function() {
+                $(this).parents(".popup-fade").fadeOut();
             });
-        </script>
-    </body>
+
+            // Закрытие по клавише ESC
+            $(document).keydown(function(e) {
+                if (e.keyCode === 27) {
+                    e.stopPropagation();
+                    $(".popup-fade").fadeOut();
+                }
+            });
+
+            // Клик по фону (закрытие окна), но не по содержимому окна
+            $('.popup-fade').click(function(e) {
+                //console.log($(e.target).closest('.popup'));
+                if ($(e.target).closest('.popup').length === 0) {
+                    $(this).fadeOut();
+                }
+            });
+
+            // Открытие окна при клике на ссылку
+            $(".popup-open").click(function() {
+                $(".popup-fade").fadeIn();
+
+            })
+        });
+    </script>
+</body>
+
 </html>
