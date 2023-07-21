@@ -16,6 +16,59 @@
                 <div class="col-sm-12">
                     <h1>jQuery Pagination</h1>
                     <p>Simple pagination using the TWBS pagination JS library. Click the buttons below to navigate to the appropriate content</p>
+                    <ul id="pagination-list">
+                        <li class="">Пункт 1</li>
+                        <li class="">Пункт 2</li>
+                        <li class="">Пункт 3</li>
+                        <li class="">Пункт 4</li>
+                        <li class="">Пункт 5</li>
+                        <li class="">Пункт 6</li>
+                        <li class="">Пункт 7</li>
+                        <li class="">Пункт 8</li>
+                        <li class="">Пункт 9</li>
+                        <li class="">Пункт 10</li>
+                        <li class="hidden">Пункт 11</li>
+                        <li class="hidden">Пункт 12</li>
+                        <li class="hidden">Пункт 13</li>
+                        <li class="hidden">Пункт 14</li>
+                        <li class="hidden">Пункт 15</li>
+                        <li class="hidden">Пункт 16</li>
+                        <li class="hidden">Пункт 17</li>
+                        <li class="hidden">Пункт 18</li>
+                        <li class="hidden">Пункт 19</li>
+                        <li class="hidden">Пункт 20</li>
+                        <li class="hidden">Пункт 22</li>
+                        <li class="hidden">Пункт 23</li>
+                        <li class="hidden">Пункт 23</li>
+                        <li class="hidden">Пункт 24</li>
+                        <li class="hidden">Пункт 25</li>
+                        <li class="hidden">Пункт 26</li>
+                        <li class="hidden">Пункт 27</li>
+                        <li class="hidden">Пункт 28</li>
+                        <li class="hidden">Пункт 29</li>
+                        <li class="hidden">Пункт 30</li>
+                        <li class="hidden">Пункт 31</li>
+                        <li class="hidden">Пункт 32</li>
+                        <li class="hidden">Пункт 33</li>
+                        <li class="hidden">Пункт 34</li>
+                        <li class="hidden">Пункт 35</li>
+                        <li class="hidden">Пункт 36</li>
+                        <li class="hidden">Пункт 37</li>
+                        <li class="hidden">Пункт 38</li>
+                        <li class="hidden">Пункт 39</li>
+                        <li class="hidden">Пункт 40</li>
+                        <li class="hidden">Пункт 41</li>
+                        <li class="hidden">Пункт 42</li>
+                        <li class="hidden">Пункт 43</li>
+                        <li class="hidden">Пункт 44</li>
+                        <li class="hidden">Пункт 45</li>
+                        <li class="hidden">Пункт 46</li>
+                        <li class="hidden">Пункт 47</li>
+                        <li class="hidden">Пункт 48</li>
+                        <li class="hidden">Пункт 49</li>
+                        <li class="hidden">Пункт 50</li>
+                        <li class="hidden">Пункт 51</li>
+                    </ul>
                     <ul id="pagination-demo" class="pagination-sm"></ul>
                 </div>
             </div>
@@ -26,16 +79,39 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
     <script>
+        //на одной странице 5 элементов
+        totalpage = Math.floor($('li').length / 5) + 1; //вычисляем общеее кол-во страниц
         $('#pagination-demo').twbsPagination({
-            totalPages: 16, //
-            visiblePages: 6,
+            totalPages: totalpage, //
+            visiblePages: 3,
             next: 'следующий',
             prev: 'предыдущий',
             onPageClick: function(event, page) {
                 //fetch content and render here
+                show_elements(page * 5 - 6, page * 5 - 1)
                 $('#page-content').text('Page ' + page) + ' content here';
             }
         });
+        /* for (let i = 0; i < $('li').length; i++) {
+        $('li')[i].setAttribute('id', 'li-' + i); // индексы присваиваем
+        } */
+
+        $.each($('#pagination-list li'), function(index, value) { //index value подтягиваются из  nums 
+            value.setAttribute('id', 'li-' + index);
+        })
+
+        function show_elements(start_index, end_index) {
+            $.each($('#pagination-list li'), function(index, value) { //index value подтягиваются из  nums 
+                if (index >= start_index + 1 && index <= end_index) {
+                    value.style.display = "list-item";
+                } else {
+
+                    value.style.display = "none";
+                }
+            })
+
+
+        }
     </script>
 </body>
 
